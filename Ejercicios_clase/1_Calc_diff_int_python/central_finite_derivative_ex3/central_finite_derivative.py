@@ -19,8 +19,8 @@ import numpy as np
 ## Ancillary modules
 # from CentralFiniteDerivative_ex3_functions import approx_first_derivative \
 #                                                   approx_second_derivative
-from CentralFiniteDerivative_ex3_functions import *
-from CentralFiniteDerivative_ex3_parameters import fun, x, h
+from central_finite_derivative_functions import *
+from central_finite_derivative_parameters import fun, x, h
 
 
 
