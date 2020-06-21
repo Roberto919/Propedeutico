@@ -1,4 +1,4 @@
-## CENTRAL FINITE DIFFERENCES EXCERCISE - MAIN EXECUTION FILE
+## CENTRAL FINITE DIFFERENCES EXCERCISE - FUNCTIONS FILE
 #### Based on excercise from file *1_aproximacion_a_derivadas_e_integrales*
 #### Author: Rob (GitHub: Roberto919)
 #### Date: 19 June 2020
@@ -8,60 +8,37 @@
 
 
 '--------------------------------------------------------------------------------'
-#############
-## Imports ##
-#############
+###############
+## Functions ##
+###############
 
 
-## Python libraries
-import numpy as np
-
-## Ancillary modules
-# from CentralFiniteDerivative_ex3_functions import approx_first_derivative \
-#                                                   approx_second_derivative
-from central_finite_derivative_functions import *
-from central_finite_derivative_parameters import fun, x, h
-
-
-
-
-
-'--------------------------------------------------------------------------------'
-#################################
-## Definition of main function ##
-#################################
-
-
-## Main module's function
-def main_function():
+## Function to approximate the first derivative through central differences
+def approx_first_derivative(fun, x, h):
     """
-    Main module's function
+    Function to approximate the first derivative through central differences
         args:
-            -
-        returns:
-            -
+            fun (function): function that will be approximated
+            x (float): value where the function will be centered
+            h (float): finite step that will be taken to evaluate de function
     """
 
+    df = (fun(x + h) - fun(x - h))/(2*h)
 
-    ## Obtain the first derivative approximation
-    print(approx_first_derivative(fun, x, h))
-
-    ## Obtain the second derivative approximation
-    print(approx_second_derivative(fun, x, h))
-
-
-    return()
+    return df
 
 
 
+## Function to approximate the second derivative through central differences
+def approx_second_derivative(fun, x, h):
+    """
+    Function to approximate the second derivative through central differences
+        args:
+            fun (function): function that will be approximated
+            x (float): value where the function will be centered
+            h (float): finite step that will be taken to evaluate de function
+    """
 
+    ddf = (fun(x + 2*h) - 2*fun(x + h) + fun(x))/h**2
 
-'--------------------------------------------------------------------------------'
-#################################
-## Excecution of main function ##
-#################################
-
-
-if __name__ == '__main__':
-
-    main_function()
+    return ddf
