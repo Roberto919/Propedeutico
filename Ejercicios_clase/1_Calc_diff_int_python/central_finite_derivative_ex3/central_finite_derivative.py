@@ -39,6 +39,6 @@ def approx_second_derivative(fun, x, h):
             h (float): finite step that will be taken to evaluate de function
     """
 
-    ddf = (fun(x + 2*h) - 2*fun(x + h) + fun(x))/h**2
+    ddf = (fun(x + h) - 2*fun(x) + fun(x - h))/h**2
 
     return ddf
