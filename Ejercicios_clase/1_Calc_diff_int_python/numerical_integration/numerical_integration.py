@@ -133,3 +133,68 @@ def GLf(f, a, b, n):
 
 
     return sum_res
+
+
+
+## GHf: Gauss-Hermite quadrature for f
+def GHf(f, mu, sigma):
+    """
+    Compute numerical approximation using quadrature Gauss-Hermite.
+    Weights and nodes are obtained with table in Kiusalaas for n=6
+        args:
+            f (function): function expression of integrand
+            mu (float): mean
+            sigma (float): standard deviation
+        returns:
+            sum_res (float): numerical approximation to integral of f in the interval a,b
+    """
+
+    ## Default "n" value
+    n = 5
+
+
+    ## Nodes and weights for numerical approximation
+    gausshermite_values = { ## Dict keys correspond to the value of "n"
+        1: {
+            'A_xs': {
+                0.886227: [0.707107, -0.707107],
+            }
+        },
+        2: {
+            'A_xs': {
+                1.181636: [0, -0],
+                0.295409: [1.224745, -1.224745],
+            }
+        },
+        3: {
+            'A_xs': {
+                0.804914: [0.524648, -0.524648],
+                0.813128e-1: [1.650680, -1.650680],
+            }
+        },
+        4: {
+            'A_xs': {
+                0.945308: [0, -0],
+                0.393619: [0.958572, -0.958572],
+                0.199532e-1: [2.020183, -2.020183],
+            }
+        },
+        5: {
+            'A_xs': {
+                0.724629: [0.436077, -0.436077],
+                0.157067: [1.335849, -1.335849],
+                0.453001e-2: [2.350605, -2.350605]
+            }
+        },
+    }
+
+
+    ## Calculation of area approximate
+    sum_res = 0 
+    for weight in gausshermite_values[n]['A_xs']:
+        for node in gausshermite_values[n]['A_xs'][weight]:
+            sum_res += weight*f(node)
+
+
+
+    return sum_res
